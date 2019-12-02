@@ -1,6 +1,7 @@
 describe('Shape', () => {
   let aShaPe;
   let bShape;
+
   it("should be defined", ()=> {
     expect(typeof Shape).toEqual("function");
   })
@@ -10,8 +11,10 @@ describe('Shape', () => {
     beforeEach(function() {
       aShape = new Shape(0,0, 50);
       bShape = new Shape(300,400, 50)
-      aShape.chase(bShape);
       jasmine.clock().install();
+      jasmine.clock().mockDate(new Date());
+
+
     });
   
     afterEach(function() {
@@ -23,9 +26,10 @@ describe('Shape', () => {
     });
 
     it('should chase the other object in equal steps', ()=> {
-      jasmine.clock().tick(100000);
-      expect(aShape.x).toEqual(bShape.x);
-      expect(aShape.y).toEqual(bShape.y)
+      aShape.chase(bShape);
+      jasmine.clock().tick(10000);
+      expect(aShape.position.x).toEqual(bShape.position.x);
+      expect(aShape.position.y).toEqual(bShape.position.y);
     })
   });
 });
