@@ -19,11 +19,12 @@ class Shape {
         let lx = this.chasingShape.x - this.x ;
         let ly = this.chasingShape.y - this.y;
         let ls = Math.sqrt(Math.pow(Math.abs(lx),2)+ Math.pow(Math.abs(ly),2));
+        
         this.x += lx/ls * this.speed * ((new Date() - this.chaseStart)/1000); // cos * speed
         this.y += ly/ls * this.speed * ((new Date() - this.chaseStart)/1000); // sin * speed
 
         // error margin for overshooting
-        if(Math.abs(ls) < this.speed*0.5) {
+        if(Math.abs(ls) < this.speed*2) {
             this.chasing = false;
             this.x = this.chasingShape.x;
             this.y = this.chasingShape.y;

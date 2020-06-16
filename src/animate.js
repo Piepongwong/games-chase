@@ -22,7 +22,6 @@ theGame.addShape(new Shape(100, 100,5));
 theGame.addShape(new Shape(500, 500,5));
 
 theGame.shapes[0].chase(theGame.shapes[1]);
-theGame.shapes[0].chase(theGame.shapes[1]);
 
 let renderCb = ()=> {
     renderGame(theGame);
@@ -30,3 +29,8 @@ let renderCb = ()=> {
 }
 
 window.requestAnimationFrame(renderCb);
+
+document.addEventListener("mousemove", function(event){
+    theGame.shapes[1].x = event.pageX;
+    theGame.shapes[1].y = window.innerHeight - event.pageY ;
+})
